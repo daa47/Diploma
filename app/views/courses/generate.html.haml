@@ -1,0 +1,39 @@
+= link_to 'Назад', @course
+\|
+= link_to 'К спимку курсов', courses_path
+.buttonSelect
+  = button_to_function '<--', "move_value('rightTable', 'leftTable')", :class=>'button'
+  %br
+  %br
+  = button_to_function '-->', "move_value('leftTable', 'rightTable')", :class=>'button'
+  %br
+  %br
+  = button_to 'Сохранить',"#", :id=>'move_data'
+.leftTableSelect
+  %h2 Входящие в состав
+  %table{:id=>'leftTable'}
+    %tr
+      %td
+        %input{:type=>"checkbox", :onclick=>"check_all('leftTable')", :name=>"not_use"}
+          Выделить все
+    - @school_group.each do |s|
+      %tr
+        %td
+          %input{:type=>"checkbox", :value=>s.id} 
+            =s.number
+
+.rightTableSelect
+  %h2 Не входящие в состав
+  %table{:id=>'rightTable'}
+    %tr
+      %td
+        %input{:type=>"checkbox", :onclick=>"check_all('rightTable')", :name=>"not_use"}
+          Выделить все
+    - @course.school_groups.each do |group|
+      %tr
+        %td
+          %input{:type=>"checkbox", :value=>group.id} 
+            =group.number
+
+.field
+  = hidden_field_tag "group_id", @course.id

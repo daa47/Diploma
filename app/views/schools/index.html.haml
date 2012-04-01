@@ -1,0 +1,18 @@
+%h1 Список школ
+
+%table
+  %thead
+    %tr
+      %th=School.human_attribute_name(:number)
+      -unless @schools.blank?
+        %th
+        %th
+  %tbody
+    - @schools.each do |school|
+      %tr
+        %td=link_to school.number, school
+        %td=link_to 'Редактировать', edit_school_path(school)
+        %td=link_to 'Удалить', school, :confirm => 'Вы уверены?', :method => :delete
+
+%br
+= link_to 'Добавить школу', new_school_path

@@ -1,0 +1,37 @@
+%p
+  %b="#{Group.human_attribute_name(:number)}: "
+  =@group.number
+  %br
+  %b="#{Group.human_attribute_name(:discipline_id)}: "
+  =link_to @group.course.discipline.full_name, @group.course.discipline 
+  %br
+  %b Продолжительность
+  =link_to @group.course.duration, @group.course
+  %br
+  %b="#{Group.human_attribute_name(:year)}: "
+  = @group.year
+  %br
+  %b="#{Group.human_attribute_name(:gtype)}: "
+  = @group.group_type?
+
+-unless @group.schoolkids.blank?
+  %h2 Состав группы
+  - i = 1
+  %table
+    %thead
+      %tr
+        %th №
+        %th ФИО
+    %tbody
+      - @group.schoolkids.each do |kid|
+        %tr
+          %td= i
+          %td= link_to kid.fio, kid
+        - i += 1
+
+%br
+= link_to 'Редактировать', edit_group_path(@group)
+\|
+=link_to 'Назад', groups_path
+\|
+= link_to 'Сформировать состав', generate_group_path(@group)

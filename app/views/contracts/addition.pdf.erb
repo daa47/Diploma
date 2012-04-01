@@ -1,0 +1,83 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage{anysize}
+\usepackage{multirow}
+\usepackage[dvips]{graphics} 
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[unicode]{hyperref}
+\marginsize{20mm}{20mm}{20mm}{20mm}
+\begin{document}
+
+<% # Первая часть договора %>
+
+\thispagestyle{empty}
+\pagestyle{empty} 
+{\bfseries Дополнительное соглашение к Договору \No} <%= @main_contract.number %> \phantom{aaaaaaaa} {\bfseries от } <<<%=@main_contract.signing_date.day%>>> <%=@main_contract.get_russian_date(@main_contract.signing_date)%>\\
+
+об организации обучения слушателя {\bfseries <%= @schoolkid.fio %> } по дополнительным образовательным программам довузовской подготовки в ЧОУ ИМБ.
+
+\begin{tabular}{p{13.0cm}p{3cm}}
+г.Москва & <<<%=@contract.signing_date.day%>>> <%=@contract.get_russian_date(@contract.signing_date)%>\\
+&\\
+\end{tabular}
+
+Мы, нижеподписавшиеся, от лица Частного образовательного учреждения высшего профессионального образования <<Институт менеджмента и бизнеса>> (ЧОУ ИМБ) ректор Авраамов Юрий Серафимович, с одной стороны и гражданин {\bfseries <%= @contract.fio %> } с другой стороны, заключили Дополнительное соглашение об установлении оплаты за обучение во втором семестре <%=@contract.start_date.year%>/<%=@contract.finish_date.year%> учебного года в размере <%= "#{@contract.price1.value} #{@contract.price1.russian_text}" %>  рублей 00 коп.}\\
+Дополнительное соглашение является неотемлимой частью Договора.
+
+\vskip 0.2cm
+\begin{center}
+{\bfseries Основные данные сторон}
+\end{center}                         
+\vskip 0.2cm
+\begin{tabular}{p{8cm}p{0.5cm}p{8cm}}
+{\bfseries  Гражданин} & & {\bfseries ЧОУ ИМБ}\\
+<%= @contract.fio %>  & &  115280, Москва, Автозаводская ул., д.16\\
+&&ИНН 7725066851, КПП 772501001 \\
+Паспорт: серия <%= @contract.passport_series %> \No <%= @contract.passport_number %> & &  р/с  40703810038250101154,\\
+Выдан <%= @contract.passport_place %>, <<<%=@contract.passport_date.day%>>> <%=@contract.get_russian_date(@contract.passport_date)%>  & &    в~Московском~банке~ОАО~<<Сбербанк~России>> г.Москвы  к/с~30101810400000000225 <<Сбербанк России ОАО>>\\
+& & г.Москва  БИК 044525225  \\
+&&\\
+Домашний адрес: <%= @contract.city %>, <%= @contract.address %> & &    \\
+&&  \\
+Телефон: <%= @contract.telephone %> & &  \\
+\rule[-2pt]{120pt}{0.4pt} (подпись)  & & Ректор  \rule[-2pt]{70pt}{0.4pt}  Авраамов Ю.С.\\
+\end{tabular}
+\vskip 1cm
+
+<% # Вторая часть договора %>
+
+\thispagestyle{empty}
+\pagestyle{empty} 
+{\bfseries Дополнительное соглашение к Договору \No} <%= @main_contract.number %> \phantom{aaaaaaaa} {\bfseries от } <<<%=@main_contract.signing_date.day%>>> <%=@main_contract.get_russian_date(@main_contract.signing_date)%>\\
+
+об организации обучения слушателя {\bfseries <%= @schoolkid.fio %> } по дополнительным образовательным программам довузовской подготовки в ЧОУ ИМБ.
+
+\begin{tabular}{p{13.0cm}p{3cm}}
+г.Москва & <<<%=@contract.signing_date.day%>>> <%=@contract.get_russian_date(@contract.signing_date)%>\\
+&\\
+\end{tabular}
+
+Мы, нижеподписавшиеся, от лица Частного образовательного учреждения высшего профессионального образования <<Институт менеджмента и бизнеса>> (ЧОУ ИМБ) ректор Авраамов Юрий Серафимович, с одной стороны и гражданин {\bfseries <%= @contract.fio %> } с другой стороны, заключили Дополнительное соглашение об установлении оплаты за обучение во втором семестре <%=@contract.start_date.year%>/<%=@contract.finish_date.year%> учебного года в размере <%= "#{@contract.price1.value} #{@contract.price1.russian_text}" %>  рублей 00 коп.}\\
+Дополнительное соглашение является неотемлимой частью Договора.
+
+\vskip 0.2cm
+\begin{center}
+{\bfseries Основные данные сторон}
+\end{center}                         
+\vskip 0.2cm
+\begin{tabular}{p{8cm}p{0.5cm}p{8cm}}
+{\bfseries  Гражданин} & & {\bfseries ЧОУ ИМБ}\\
+<%= @contract.fio %>  & &  115280, Москва, Автозаводская ул., д.16\\
+&&ИНН 7725066851, КПП 772501001 \\
+Паспорт: серия <%= @contract.passport_series %> \No <%= @contract.passport_number %> & &  р/с  40703810038250101154,\\
+Выдан <%= @contract.passport_place %>, <<<%=@contract.passport_date.day%>>> <%=@contract.get_russian_date(@contract.passport_date)%>  & &    в~Московском~банке~ОАО~<<Сбербанк~России>> г.Москвы  к/с~30101810400000000225 <<Сбербанк России ОАО>>\\
+& & г.Москва  БИК 044525225  \\
+&&\\
+Домашний адрес: <%= @contract.city %>, <%= @contract.address %> & &    \\
+&&  \\
+Телефон: <%= @contract.telephone %> & &  \\
+\rule[-2pt]{120pt}{0.4pt} (подпись)  & & Ректор  \rule[-2pt]{70pt}{0.4pt}  Авраамов Ю.С.\\
+\end{tabular}
+\vskip 1cm
+
+\end{document}

@@ -1,0 +1,40 @@
+%p
+  %b="#{Schoolkid.human_attribute_name('second_name')}:"
+  = @schoolkid.second_name
+  %br
+  %b="#{Schoolkid.human_attribute_name('first_name')}:"
+  = @schoolkid.first_name
+  %br
+  %b="#{Schoolkid.human_attribute_name('last_name')}:"
+  = @schoolkid.last_name
+  %br
+  %b="#{Schoolkid.human_attribute_name('telephone')}:"
+  = @schoolkid.telephone
+  %br
+  %b="#{Schoolkid.human_attribute_name('school_group_id')}:"
+  - sg = SchoolGroup.find(@schoolkid.school_group_id)
+  = link_to sg.number, sg
+  %br
+  %b="#{Schoolkid.human_attribute_name('school')}:"
+  - s = School.find(sg.school_id)
+  = link_to s.number, s
+  %br  
+-unless @schoolkid.contracts.blank?
+  %table
+    %thead
+      %tr
+        %th= Contract.human_attribute_name('number')
+        %th= Contract.human_attribute_name('discipline_ids')
+        %th= Contract.human_attribute_name('start_date')
+    %tbody
+      -@schoolkid.contracts.each do |contract|
+        %tr
+          %td= link_to contract.number, contract
+          %td=contract.disciplines.map(&:full_name).join(', ')
+          %td= contract.start_date.strftime("%d.%m.%Y")
+%br
+= link_to 'Редактировать', edit_schoolkid_path(@schoolkid)
+\|
+= link_to 'Добавить договор', create_contract_schoolkid_path
+\|
+= link_to 'Назад', schoolkids_path

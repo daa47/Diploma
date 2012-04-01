@@ -1,0 +1,85 @@
+= form_for @contract do |f|
+  -if @contract.errors.any?
+    .div.error
+      %h2= "При сохранении произошли ошибки"
+      %ul
+        - @contract.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :schoolkid_id
+    %br
+    =f.text_field :schoolkid_tokens,"data-pre"=> @contract.schoolkid.to_a.map(&:attributes).to_json
+    = f.label :number
+    %br
+    = f.text_field :number, :size => 10
+  .film
+    .col  
+      %b Ответственное лицо:
+      .field 
+        = f.label :second_name
+        = f.text_field :second_name, :size => 20
+        &nbsp;&nbsp;
+        = f.label :first_name
+        = f.text_field :first_name, :size => 15
+        &nbsp;&nbsp;
+        = f.label :last_name
+        = f.text_field :last_name, :size => 20
+      .field
+        = f.label :passport_number
+        %br
+        = f.text_field :passport_number, :size => 10
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        = f.label :passport_series
+        = f.text_field :passport_series, :size => 10
+      .field
+        = f.label :passport_date
+        %br
+        = f.text_field :passport_date, :size => 10
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        = f.label :passport_place
+        = f.text_field :passport_place, :size => 20    
+      .field
+        = f.label :city
+        %br
+        = f.text_field :city, :size => 10
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        = f.label :address
+        = f.text_field :address, :size => 20
+      .field     
+        = f.label :telephone
+        %br
+        = f.text_field :telephone, :size => 10
+      .clear
+  .field
+    =f.label :first_sum
+    =f.select :first_sum, Price.all.map{|p| [p.value, p.id]}, :prompt => "0"
+    %br
+    #hide_field
+      =f.label :second_sum
+      =f.select :second_sum, Price.all.map{|p| [p.value, p.id]}, :prompt => "0"
+  .field
+    %b= f.label :ctype
+    &nbsp;
+    = f.radio_button :ctype, "1", :checked => @contract.ctype==1
+    Основной договор
+  .field
+    %b= f.label :period
+    &nbsp;
+    = f.radio_button :period, "0", :checked => @contract.period==0, :class=>"period"
+    1 год.
+    &nbsp;
+    = f.radio_button :period, "1", :checked => @contract.period==1, :class=>"period"
+    &nbsp;
+    2 года.
+    = f.radio_button :period, "2", :checked => @contract.period==2, :class=>"period"
+    &nbsp;
+    Ускоренник
+  .field
+    %b= f.label :discipline_ids
+    %br
+    -for discipline in Discipline.find(:all)
+      =check_box_tag :contract_discipline_ids, discipline.id, @contract.disciplines.include?(discipline)
+      =discipline.full_name
+      %br
+  .actions
+    = f.submit 'Сохранить'

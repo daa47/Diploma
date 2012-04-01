@@ -1,0 +1,28 @@
+%h1 Классы
+%br
+= link_to 'Добавить', new_school_group_path
+-unless @schools.blank?
+  %ul
+    - @schools.each do |school|
+      %li=link_to school.number, :anchor=>school.number 
+  - @schools.each do |school|
+    %a{:id=>school.number}=link_to school.number, school
+    %table
+      %thead
+        %tr
+          %th №
+          %th=SchoolGroup.human_attribute_name('number')
+          %th=SchoolGroup.human_attribute_name('year')
+          %th
+          %th
+      %tbody
+        - i = 1
+        - school.school_groups.each do |group|
+          %tr
+            %td= i
+            %td= link_to group.number, group
+            %td= link_to group.year, group
+            %td= link_to 'Редактировать', edit_school_group_path(group)
+            %td= link_to 'Удалить', group, :confirm => 'Вы уверены?', :method => :delete
+            - i += 1
+    %br

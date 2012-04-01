@@ -1,0 +1,18 @@
+%h1 Список расценок
+%br
+%table
+  %tr
+    %th=Price.human_attribute_name('value')
+    %th=Price.human_attribute_name('russian_text')
+    %th
+    %th
+  - @prices.each do |price|
+    %tr
+      %td=link_to price.value, price
+      %td=link_to price.russian_text, price
+      %td=link_to 'Редактировать', edit_price_path(price)
+      %td=link_to 'Удалить', price, :confirm => 'Are you sure?', :method => :delete
+
+=paginate @prices
+%br
+= link_to 'Добавить', new_price_path

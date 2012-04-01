@@ -1,0 +1,21 @@
+%h1 Список контрактов
+
+%table
+  %thead
+    %tr
+      %th=Contract.human_attribute_name('number')
+      %th=Contract.human_attribute_name('signing_date')
+      - unless @contracts.blank?
+        %th
+        %th
+  %tbody
+    - @contracts.each do |contract|
+      %tr
+        %td= link_to contract.number, contract
+        %td= link_to contract.signing_date.strftime("%d.%m.%Y"), contract
+        %td= link_to 'Редактировать', edit_contract_path(contract)
+        %td= link_to 'Удалить', contract, :confirm => 'Вы уверены?', :method => :delete
+
+=paginate @contracts
+%br
+= link_to 'Новый контракт', new_contract_path

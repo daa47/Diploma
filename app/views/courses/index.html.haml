@@ -1,0 +1,26 @@
+%h1 Курсы
+%br
+= link_to 'Добавить', new_course_path
+-unless @disciplines.blank?
+  %ul
+    - @disciplines.each do |discipline|
+      %li=link_to discipline.full_name, :anchor=>discipline.full_name 
+  - @disciplines.each do |discipline|
+    %a{:id=>discipline.full_name}=link_to discipline.full_name, discipline
+    %table
+      %thead
+        %tr
+          %th №
+          %th Продолжительность
+          %th
+          %th
+      %tbody
+        - i = 1
+        - discipline.courses.each do |course|
+          %tr
+            %td= i
+            %td= link_to course.duration, course
+            %td= link_to 'Редактировать', edit_course_path(course)
+            %td= link_to 'Удалить', course, :confirm => 'Вы уверены?', :method => :delete
+            - i += 1
+    %br

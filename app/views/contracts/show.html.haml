@@ -1,0 +1,24 @@
+%h1= @contract.get_contract_type? + " № #{@contract.number}"
+%p
+  =@contract.signing_date.strftime("%d.%m.%y")
+  %br
+  =@contract.start_date.strftime("%d.%m.%y")
+  =@contract.finish_date.strftime("%d.%m.%y")
+  %br
+  =@contract.disciplines.map(&:full_name).join(', ')
+  .film
+    .col  
+      %b Ответственное лицо:
+      %br
+      = @contract.fio
+      %br
+    .clear
+ 
+= link_to 'PDF', contract_path(@contract, :format => :pdf)
+\|
+= link_to 'Редактировать', edit_contract_path(@contract)
+\|
+= link_to 'Назад', contracts_path
+\|
+- schoolkid = Schoolkid.find( @contract.schoolkid_id )
+= link_to 'Школьник', schoolkid

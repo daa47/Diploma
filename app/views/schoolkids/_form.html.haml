@@ -1,0 +1,41 @@
+=form_for @schoolkid,:html=>{:multipart=>true} do |f|
+  -if @schoolkid.errors.any?
+    .div.error
+      %h2 При сохранении произошли ошибки
+      %ul
+        -@schoolkid.errors.full_messages.each do |msg|
+          %li=msg
+
+  .field
+    = f.label :first_name
+    %br
+    = f.text_field :first_name
+  .field
+    = f.label :second_name
+    %br
+    = f.text_field :second_name
+  .field
+    = f.label :last_name
+    %br
+    = f.text_field :last_name
+  .field
+    = f.label :birthday
+    %br
+    =f.text_field :birthday, :size => 10
+  .field
+    = f.label :male
+    %br
+    = f.radio_button :male,"1", :checked=>@schoolkid.male?
+    Мужской&nbsp;
+    = f.radio_button :male,"0", :checked=>!@schoolkid.male?
+    Женский
+  .field
+    = f.label :telephone
+    %br
+    = f.text_field :telephone
+  .field
+    = f.label :school_group_id
+    %br
+    =f.text_field :school_group_tokens,"data-pre"=> @schoolkid.school_group.to_a.map(&:attributes).to_json
+  .actions
+    = f.submit 'Сохранить'

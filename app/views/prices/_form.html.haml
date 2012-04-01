@@ -1,0 +1,18 @@
+= form_for @price do |f|
+  -if @price.errors.any?
+    .div.error
+      %h2 При сохранении произошли ошибки
+      %ul
+        - @price.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :value
+    %br
+    = f.number_field :value
+  .field
+    = f.label :russian_text
+    %br
+    = f.text_field :russian_text
+  .actions
+    = f.submit 'Сохранить'

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Value:
+  = @price.value
+%p
+  %b Russian text:
+  = @price.russian_text
+%p
+  %b Hiden:
+  = @price.hiden
+
+= link_to 'Edit', edit_price_path(@price)
+\|
+= link_to 'Back', prices_path

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  value: 1
+  russian_text: MyString
+  hiden: false
+
+two:
+  value: 1
+  russian_text: MyString
+  hiden: false
